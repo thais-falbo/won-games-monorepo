@@ -1,8 +1,7 @@
 {
   "name": "won-games-monorepo",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "private": true,
   "scripts": {
     "build": "turbo build --cache-dir=.turbo",
     "build:strapi": "turbo run build --filter=strapi",
@@ -11,11 +10,14 @@
     "dev:strapi": "turbo run dev --filter=strapi",
     "dev:nextjs": "turbo run dev --filter=nextjs"
   },
-  "keywords": [],
-  "author": "",
+  "author": "Thaís Falbo",
   "license": "ISC",
   "packageManager": "pnpm@10.6.4",
   "devDependencies": {
     "turbo": "^2.4.4"
+  },
+  "engines": {
+    "node": "22.x.x",
+    "pnpm": "10.6.x"
   }
 }
