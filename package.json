@@ -1,0 +1,21 @@
+{
+  "name": "won-games-monorepo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "turbo build --cache-dir=.turbo",
+    "build:strapi": "turbo run build --filter=strapi",
+    "build:ui": "turbo run build --filter=nextjs",
+    "dev": "turbo dev",
+    "dev:strapi": "turbo run dev --filter=strapi",
+    "dev:nextjs": "turbo run dev --filter=nextjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.6.4",
+  "devDependencies": {
+    "turbo": "^2.4.4"
+  }
+}
