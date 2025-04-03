@@ -1,9 +1,13 @@
-'use strict';
-
 const fs = require('fs-extra');
-const path = require('path');
+const path = require('node:path');
 const mime = require('mime-types');
-const { categories, authors, articles, global, about } = require('../data/data.json');
+const {
+  categories,
+  authors,
+  articles,
+  global,
+  about,
+} = require('../data/data.json');
 
 async function seedExampleApp() {
   const shouldImportSeedData = await isFirstRun();
@@ -19,7 +23,7 @@ async function seedExampleApp() {
     }
   } else {
     console.log(
-      'Seed data has already been imported. We cannot reimport unless you clear your database first.'
+      'Seed data has already been imported. We cannot reimport unless you clear your database first.',
     );
   }
 }
@@ -37,11 +41,13 @@ async function isFirstRun() {
 
 async function setPublicPermissions(newPermissions) {
   // Find the ID of the public role
-  const publicRole = await strapi.query('plugin::users-permissions.role').findOne({
-    where: {
-      type: 'public',
-    },
-  });
+  const publicRole = await strapi
+    .query('plugin::users-permissions.role')
+    .findOne({
+      where: {
+        type: 'public',
+      },
+    });
 
   // Create the new permissions and link them to the public role
   const allPermissionsToCreate = [];
@@ -62,7 +68,7 @@ async function setPublicPermissions(newPermissions) {
 
 function getFileSizeInBytes(filePath) {
   const stats = fs.statSync(filePath);
-  const fileSizeInBytes = stats['size'];
+  const fileSizeInBytes = stats.size;
   return fileSizeInBytes;
 }
 
@@ -150,7 +156,9 @@ async function updateBlocks(blocks) {
       updatedBlocks.push(blockCopy);
     } else if (block.__component === 'shared.slider') {
       // Get files already uploaded to Strapi or upload new files
-      const existingAndUploadedFiles = await checkFileExistsBeforeUpload(block.files);
+      const existingAndUploadedFiles = await checkFileExistsBeforeUpload(
+        block.files,
+      );
       // Copy the block to not mutate directly
       const blockCopy = { ...block };
       // Replace the file names on the block with the actual files
