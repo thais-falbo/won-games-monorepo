@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "biome": "biome check .",
+    "biome:fix": "biome check . --write",
     "build": "turbo build --cache-dir=.turbo",
     "build:strapi": "turbo run build --filter=strapi",
     "build:ui": "turbo run build --filter=nextjs",
@@ -14,6 +16,7 @@
   "license": "ISC",
   "packageManager": "pnpm@10.6.4",
   "devDependencies": {
+    "@biomejs/biome": "1.9.4",
     "turbo": "^2.4.4"
   },
   "engines": {

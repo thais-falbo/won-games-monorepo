@@ -10,10 +10,13 @@
         "!.next/cache/**"
       ]
     },
-    "check-types": {
+    "//#biome": {
       "dependsOn": [
-        "^check-types"
+        "^biome"
       ]
+    },
+    "//#biome:fix": {
+      "cache": false
     },
     "dev": {
       "persistent": true,

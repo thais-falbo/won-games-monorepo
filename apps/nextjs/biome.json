@@ -1,0 +1,14 @@
+{
+	"extends": ["../../biome.json", "next/core-web-vitals", "next/typescript"],
+	"formatter": {
+		"enabled": true,
+		"indentStyle": "space",
+		"indentWidth": 2,
+		"lineWidth": 80,
+		"lineEnding": "lf",
+		"ignore": []
+	},
+	"linter": {
+		"enabled": true
+	}
+}
