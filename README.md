@@ -21,7 +21,7 @@ Monorepo version of project Won Games from the Udemy course [React Avançado](ht
 
 ### Installation
 
-```
+```sh
 # In root directory
 pnpm install
 ```
@@ -32,7 +32,7 @@ This will install all dependencies for all `apps/` and `packages/` directories.
 
 After installing, you can use Turbo scripts to manage the project:
 
-```
+```sh
 # In root directory
 
 # Lint
