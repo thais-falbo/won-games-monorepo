@@ -7,7 +7,7 @@
     "biome:fix": "biome check . --write",
     "build": "turbo build --cache-dir=.turbo",
     "build:strapi": "turbo run build --filter=strapi",
-    "build:ui": "turbo run build --filter=nextjs",
+    "build:nextjs": "turbo run build --filter=nextjs",
     "dev": "turbo dev",
     "dev:strapi": "turbo run dev --filter=strapi",
     "dev:nextjs": "turbo run dev --filter=nextjs"
