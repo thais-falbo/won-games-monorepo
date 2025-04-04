@@ -55,3 +55,17 @@ pnpm dev:nextjs # Run dev server for Next.js app
 1. **Pre Commit:** Runs biome to lint and format code
 2. **Prepare Commit:** Runs commitzen to create a commit message
 3. **Commit message:** Lints commit message
+
+# Docker
+
+```sh
+# In root directory
+
+# Build strapi image
+docker build -t strapi:latest -f apps/strapi/Dockerfile .
+
+docker compose up -d db
+docker run -it --rm --name strapi -p 1337:1337 --env-file apps/strapi/.env --network=dev-templates_db_network strapi:latest
+# Run container
+docker run -it --rm --name strapi -p 1337:1337 --env-file apps/strapi/.env strapi:latest
+```
