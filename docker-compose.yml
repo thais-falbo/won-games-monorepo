@@ -3,12 +3,9 @@ services:
     container_name: db
     platform: linux/amd64 #for platform error on Apple M1 chips
     restart: unless-stopped
-    env_file: ./apps/strapi/.env
     image: postgres:14.5-alpine
-    environment:
-      POSTGRES_USER: ${DATABASE_USERNAME}
-      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
-      POSTGRES_DB: ${DATABASE_NAME}
+    env_file:
+      - ./apps/strapi/.env
     volumes:
       - strapi-data:/var/lib/postgresql/data/ #using a volume
       #- ./data:/var/lib/postgresql/data/ # if you want to use a bind folder
@@ -22,17 +19,8 @@ services:
     build:
       context: .
       dockerfile: ./apps/strapi/Dockerfile
-    env_file: ./apps/strapi/.env
-    environment:
-      DATABASE_CLIENT: ${DATABASE_CLIENT}
-      DATABASE_HOST: db
-      DATABASE_NAME: ${DATABASE_NAME}
-      DATABASE_USERNAME: ${DATABASE_USERNAME}
-      DATABASE_PORT: ${DATABASE_PORT}
-      JWT_SECRET: ${JWT_SECRET}
-      ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
-      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
-      NODE_ENV: ${NODE_ENV}
+    env_file:
+      - ./apps/strapi/.env
     volumes:
       - ./config:/opt/app/config
       - ./src:/opt/app/src
