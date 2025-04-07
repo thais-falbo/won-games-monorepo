@@ -49,7 +49,7 @@ RUN \
 ENV PATH=/app/apps/${APP}/node_modules/.bin:$PATH
 
 COPY --from=pruned /app/out/full/ .
-COPY turbo.json turbo.json
+COPY ../turbo.json turbo.json
 
 RUN pnpm turbo run build --filter=${WORKSPACE}
 
