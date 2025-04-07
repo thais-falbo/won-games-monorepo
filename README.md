@@ -60,12 +60,13 @@ pnpm dev:nextjs # Run dev server for Next.js app
 
 ```sh
 # In root directory
-
+# Using docker compose
+docker-compose --env-file apps/strapi/.env up
+# OR
 # Build strapi image
 docker build -t strapi:latest -f apps/strapi/Dockerfile .
-
+# Build Postgresql database
 docker compose up -d db
-docker run -it --rm --name strapi -p 1337:1337 --env-file apps/strapi/.env --network=dev-templates_db_network strapi:latest
-# Run container
+# Run strapi and db together
 docker run -it --rm --name strapi -p 1337:1337 --env-file apps/strapi/.env strapi:latest
 ```

@@ -7,7 +7,16 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "ignore": ["node_modules", "dist", ".next", ".cache", "build"]
+    "ignore": [
+      "node_modules",
+      "dist",
+      ".next",
+      ".cache",
+      "build",
+      ".yarn",
+      ".pnp.*",
+      "*.d.ts"
+    ]
   },
   "formatter": {
     "enabled": true,
