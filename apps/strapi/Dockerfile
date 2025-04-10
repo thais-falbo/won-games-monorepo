@@ -1,9 +1,9 @@
 ARG APP=strapi
-ARG WORKSPACE=strapi
+ARG WORKSPACE=@repo/strapi
 
 FROM node:22-alpine AS base
-RUN corepack enable && corepack install -g yarn@4.7.0
-RUN yarn set version berry
+# RUN corepack enable && corepack install -g yarn@4.7.0
+# RUN yarn set version berry
 RUN apk update && apk add --no-cache libc6-compat
 
 ### PRUNED ###
@@ -14,7 +14,8 @@ ARG WORKSPACE
 WORKDIR /app
 COPY . .
 
-RUN yarn dlx turbo@^2.4.4 prune ${WORKSPACE} --docker
+RUN yarn global add turbo@^2.4.4
+RUN turbo prune ${WORKSPACE} --docker
 
 ### INSTALLER ###
 FROM base AS installer
@@ -29,7 +30,7 @@ RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev l
 
 COPY .gitignore .gitignore
 COPY --from=pruned /app/out/json/ .
-COPY --from=pruned /app/out/yarn.lock .
+COPY --from=pruned /app/out/yarn.lock ./yarn.lock
 
 RUN yarn global add node-gyp
 RUN yarn global add turbo@^2.4.4
@@ -59,13 +60,13 @@ RUN apk update && apk add --no-cache vips-dev
 
 RUN addgroup --system --gid 1001 strapi
 RUN adduser --system --uid 1001 strapi
-USER strapi
 
 WORKDIR /app
 COPY --from=installer /app .
+RUN chown -R strapi:strapi .
+USER strapi
 
 ENV PATH=/app/apps/${APP}/node_modules/.bin:$PATH
-
 WORKDIR /app/apps/${APP}
 EXPOSE ${PORT:-1337}
-CMD ["yarn", "start"]
+CMD ["yarn", "develop"]
