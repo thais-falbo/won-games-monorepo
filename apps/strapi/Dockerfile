@@ -69,4 +69,4 @@ USER strapi
 ENV PATH=/app/apps/${APP}/node_modules/.bin:$PATH
 WORKDIR /app/apps/${APP}
 EXPOSE ${PORT:-1337}
-CMD ["yarn", "develop"]
+CMD ["yarn", "start"]

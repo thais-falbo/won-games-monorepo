@@ -42,19 +42,6 @@ services:
     depends_on:
       - db
 
-  strapiAdminer:
-    container_name: strapiAdminer
-    image: adminer
-    restart: unless-stopped
-    ports:
-      - "9090:8080"
-    environment:
-      - ADMINER_DEFAULT_SERVER=db
-    networks:
-      - strapi
-    depends_on:
-      - db
-
 volumes:
   strapi-data:
 
